@@ -6,11 +6,13 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 find_package(ament_cmake REQUIRED)
+find_package(geometry_msgs REQUIRED)
 find_package(image_transport REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(ping360_sonar_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(tf2_ros REQUIRED)
 
 add_executable(ping360_image_compensation_node
   src/main.cpp
@@ -23,11 +25,13 @@ target_include_directories(ping360_image_compensation_node PUBLIC
   $<INSTALL_INTERFACE:include>
 )
 ament_target_dependencies(ping360_image_compensation_node
+  geometry_msgs
   image_transport
   nav_msgs
   ping360_sonar_msgs
   rclcpp
   sensor_msgs
+  tf2_ros
 )
 
 install(TARGETS ping360_image_compensation_node
